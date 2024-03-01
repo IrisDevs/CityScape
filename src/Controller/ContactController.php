@@ -6,14 +6,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class AboutController extends AbstractController
+class ContactController extends AbstractController
 {
-    #[Route('/about', name: 'app_about')]
+    #[Route('/contact', name: 'app_contact')]
     public function index(): Response
     {
-        return $this->render('about/index.html.twig', [
-            'controller_name' => 'AboutController',
-            'breadcrumb_title' => 'About',
+        return $this->render('contact/index.html.twig', [
+            'controller_name' => 'ContactController',
+            'breadcrumb_title' => 'Contact',
         ]);
     }
 }
