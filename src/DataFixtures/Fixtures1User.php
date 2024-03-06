@@ -18,20 +18,6 @@ class Fixtures1User extends Fixture
             $user-> setPassword($faker->password());
             // $user-> setUserRoles($faker->randomElement(['admin', 'client']));
             $user-> setIsVerified($faker->numberBetween(0, 1));
-            $this->addReference('user' , $user);
-                $picture = new Picture();
-                $picture-> setPicProperty($faker->numberBetween(0, 5));
-                $picture-> setPicFile($faker->word());
-                $picture-> setPicName($faker->word());
-                $picture-> setPicHref($faker->mimeType());
-                $picture-> setPicAlt($faker->sentence());
-                $picture-> setPicCaption($faker->sentence());
-                $picture-> setPicType($faker->sentence());
-                $picture-> setPicFormat($faker->fileExtension());
-                $picture-> setPicWidth($faker->numberBetween(0, 1000));
-                $picture-> setPicHeight($faker->numberBetween(0, 1000));
-                $picture-> setPicSize($faker->numberBetween(0, 1000));
-                $manager->persist($picture);
             $manager->persist($user);
             }
         
