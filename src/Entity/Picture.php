@@ -58,7 +58,7 @@ class Picture
         return $this->pic_file;
     }
 
-    public function setPicFile(int $pic_file): static
+    public function setPicFile(string $pic_file): static
     {
         $this->pic_file = $pic_file;
 
@@ -118,7 +118,7 @@ class Picture
         return $this->pic_type;
     }
 
-    public function setPicType(int $pic_type): static
+    public function setPicType(string $pic_type): static
     {
         $this->pic_type = $pic_type;
 
