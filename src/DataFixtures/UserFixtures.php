@@ -7,7 +7,7 @@ use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class Fixtures1User extends Fixture
+class UserFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
@@ -16,7 +16,10 @@ class Fixtures1User extends Fixture
             $user = new User();
             $user-> setEmail($faker->email());
             $user-> setPassword($faker->password());
-            // $user-> setUserRoles($faker->randomElement(['admin', 'client']));
+            $user-> setLastName($faker->lastName());
+            $user-> setUserName($faker->userName());
+            $user-> setFirstName($faker->firstName());
+            // $user-> setUserRoles($faker->randomElements(['admin', 'client']));
             $user-> setIsVerified($faker->numberBetween(0, 1));
             $manager->persist($user);
             }

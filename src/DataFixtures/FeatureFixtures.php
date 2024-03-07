@@ -7,7 +7,7 @@ use App\Entity\Feature;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class Fixtures6Feature extends Fixture
+class FeatureFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {

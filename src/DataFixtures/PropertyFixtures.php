@@ -11,7 +11,7 @@ use App\Entity\Property;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class Fixtures2Property extends Fixture
+class PropertyFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
@@ -28,20 +28,20 @@ class Fixtures2Property extends Fixture
         $property-> setPropNbSpaces($faker->randomDigit());
         $property-> setPropFurnished($faker->numberBetween(0, 1));
         $this->setReference('property' , $property);
-                $picture = new Picture();
-                $picture-> setPicProperty($property);
-                $picture-> setPicFile($faker->word());
-                $picture-> setPicName($faker->word());
-                $picture-> setPicHref($faker->mimeType());
-                $picture-> setPicAlt($faker->sentence());
-                $picture-> setPicCaption($faker->sentence());
-                $picture-> setPicType($faker->sentence());
-                $picture-> setPicFormat($faker->fileExtension());
-                $picture-> setPicWidth($faker->numberBetween(0, 1000));
-                $picture-> setPicHeight($faker->numberBetween(0, 1000));
-                $picture-> setPicSize($faker->numberBetween(0, 1000));
-                $this->setReference('picture', $picture);
-                $manager->persist($picture);
+                // $picture = new Picture();
+                // $picture-> setPicProperty($property);
+                // $picture-> setPicFile($faker->word());
+                // $picture-> setPicName($faker->word());
+                // $picture-> setPicHref($faker->mimeType());
+                // $picture-> setPicAlt($faker->sentence());
+                // $picture-> setPicCaption($faker->sentence());
+                // $picture-> setPicType($faker->sentence());
+                // $picture-> setPicFormat($faker->fileExtension());
+                // $picture-> setPicWidth($faker->numberBetween(0, 1000));
+                // $picture-> setPicHeight($faker->numberBetween(0, 1000));
+                // $picture-> setPicSize($faker->numberBetween(0, 1000));
+                // $this->setReference('picture', $picture);
+                // $manager->persist($picture);
                 $feature = new Feature();
                 $feature-> setFeatTitle($faker->word());
                 $feature-> setFeatProperty($property);

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\TimestampTraits;
 use App\Repository\PropertyRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -10,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: PropertyRepository::class)]
 class Property
 {
+    use TimestampTraits;
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -27,9 +29,6 @@ class Property
     #[ORM\Column]
     private ?int $prop_price = null;
 
-    #[ORM\Column]
-    private ?\DateTimeImmutable $created_at = null;
-
     #[ORM\Column(nullable: true)]
     private ?int $prop_nb_beds = null;
 
@@ -45,9 +44,16 @@ class Property
     #[ORM\OneToMany(targetEntity: Feature::class, mappedBy: 'feat_property')]
     private Collection $features;
 
+    #[ORM\OneToMany(targetEntity: picture::class, mappedBy: 'property')]
+    private Collection $picture;
+
+    #[ORM\ManyToOne(inversedBy: 'properties')]
+    private ?category $category = null;
+
     public function __construct()
     {
         $this->features = new ArrayCollection();
+        $this->picture = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -99,18 +105,6 @@ class Property
     public function setPropPrice(int $prop_price): static
     {
         $this->prop_price = $prop_price;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->created_at;
-    }
-
-    public function setCreatedAt(\DateTimeImmutable $created_at): static
-    {
-        $this->created_at = $created_at;
 
         return $this;
     }
@@ -189,6 +183,48 @@ class Property
                 $feature->setFeatProperty(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, picture>
+     */
+    public function getPicture(): Collection
+    {
+        return $this->picture;
+    }
+
+    public function addPicture(picture $picture): static
+    {
+        if (!$this->picture->contains($picture)) {
+            $this->picture->add($picture);
+            $picture->setProperty($this);
+        }
+
+        return $this;
+    }
+
+    public function removePicture(picture $picture): static
+    {
+        if ($this->picture->removeElement($picture)) {
+            // set the owning side to null (unless already changed)
+            if ($picture->getProperty() === $this) {
+                $picture->setProperty(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getCategory(): ?category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?category $category): static
+    {
+        $this->category = $category;
 
         return $this;
     }

@@ -7,7 +7,7 @@ use App\Entity\Address;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class Fixtures8Address extends Fixture
+class AddressFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {

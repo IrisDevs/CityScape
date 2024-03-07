@@ -7,7 +7,7 @@ use App\Entity\Rent;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class Fixtures9Rent extends Fixture
+class RentFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
