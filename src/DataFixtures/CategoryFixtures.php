@@ -53,7 +53,7 @@ class CategoryFixtures extends Fixture
         
         ];
 
-        foreach ($categories as $sub_array) {
+        foreach ($categories as $key1=>$sub_array) {
             
             $maincategory = new Category();
             $maincategory->setName($sub_array['main_categories']);
@@ -62,7 +62,7 @@ class CategoryFixtures extends Fixture
             $maincategory->setMetaDescription($faker->sentence());
             $manager->persist($maincategory);
             
-            foreach ($sub_array['sub_category_array'] as $subcategory_name) {
+            foreach ($sub_array['sub_category_array'] as $key2=>$subcategory_name) {
                 $subcategory = new Category();
                 $subcategory->setName($subcategory_name);
                 $subcategory->setSlug($faker->shuffle('hello-world'));
