@@ -2,66 +2,54 @@
 
 namespace App\DataFixtures;
 
-use Faker\Factory;
 use App\Entity\Picture;
-use App\Entity\Feature;
-use App\Entity\Amenity;
-use App\Entity\Rent;
 use App\Entity\Property;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
+// Pour utiliser faker
+use Faker\Factory;
+
+
+
 class PropertyFixtures extends Fixture
 {
+   
     public function load(ObjectManager $manager): void
-    {
-        for ($i = 0; $i < 5; $i++) {
+    {  
         $faker = Factory::create('fr_FR');
+
+        for ($ii = 1; $ii < 25; $ii++) {
+
         $property = new Property();
-        $property-> setPropHousingType($faker->randomElement(['maison', 'appartement', 'studio', 'pavillon', 'bureau', 'villa', 'maison de luxe']));
-        $property-> setPropNbRooms($faker->randomDigit());
-        $property-> setPropSqm($faker->numberBetween(0, 1000));
-        $property-> setPropPrice($faker->numberBetween(0, 20000));
-        $property-> setCreatedAt(new \DateTimeImmutable());
-        $property-> setPropNbBeds($faker->randomDigit());
-        $property-> setPropNbBaths($faker->randomDigit());
-        $property-> setPropNbSpaces($faker->randomDigit());
-        $property-> setPropFurnished($faker->numberBetween(0, 1));
-        $this->setReference('property' , $property);
-                // $picture = new Picture();
-                // $picture-> setPicProperty($property);
-                // $picture-> setPicFile($faker->word());
-                // $picture-> setPicName($faker->word());
-                // $picture-> setPicHref($faker->mimeType());
-                // $picture-> setPicAlt($faker->sentence());
-                // $picture-> setPicCaption($faker->sentence());
-                // $picture-> setPicType($faker->sentence());
-                // $picture-> setPicFormat($faker->fileExtension());
-                // $picture-> setPicWidth($faker->numberBetween(0, 1000));
-                // $picture-> setPicHeight($faker->numberBetween(0, 1000));
-                // $picture-> setPicSize($faker->numberBetween(0, 1000));
-                // $this->setReference('picture', $picture);
-                // $manager->persist($picture);
-                $feature = new Feature();
-                $feature-> setFeatTitle($faker->word());
-                $feature-> setFeatProperty($property);
-                $this->setReference('feature', $feature);
-                $manager->persist($feature);
-                $amenity = new Amenity();
-                $amenity-> setAmenDishwasher($faker->numberBetween(0, 1));
-                $amenity-> setAmenFloorCoverings($faker->numberBetween(0, 1));
-                $amenity-> setAmenInternet($faker->numberBetween(0, 1));
-                $amenity-> setAmenWardrobes($faker->numberBetween(0, 1));
-                $amenity-> setAmenSupermarket($faker->numberBetween(0, 1));
-                $amenity-> setAmenKidsZone($faker->numberBetween(0, 1));
-                $amenity-> setAmenProp($property);
-                $this->setReference('amenity', $amenity);
-                $manager->persist($amenity);
+        $property->setPropHousingType($faker->randomElement(['Houses','Apartments','Office','Villa']));
+        $property->setPropNbRooms($faker->numberBetween(0,30));
+        $property->setPropSqm($faker->numberBetween(0,1000));
+        $property->setPropPrice($faker->numberBetween(0,100000));
+        $property->setPropNbBeds($faker->numberBetween(0,10));
+        $property->setPropNbBaths($faker->numberBetween(0,10));
+        $property->setPropNbSpaces($faker->numberBetween(0,10));
+        $property->setPropFurnished($faker->numberBetween(0,1));
+        $property->setCategory($this->getReference('category_' . rand(1,2) ));
         $manager->persist($property);
-        }
+
+        for ($i = 0; $i <2; $i++) {
+           
+            $url ='https://picsum.photos/1290/584';
+            $imagename = rand(1,1000).'.jpg';
+            $img = 'C:\laragon\www\Symfony\CityScape\public\img\img'.$imagename;
+            file_put_contents($img, file_get_contents($url));
+
+            $pict = new Picture();
+            $pict->setImageName($imagename);
+            $pict->setProperty( $property);
+
+            $manager->persist($pict);
+        };
+     
         
-
-
-        $manager->flush();
     }
+    
+    $manager->flush();
+}
 }

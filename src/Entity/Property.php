@@ -44,7 +44,7 @@ class Property
     #[ORM\OneToMany(targetEntity: Feature::class, mappedBy: 'feat_property')]
     private Collection $features;
 
-    #[ORM\OneToMany(targetEntity: picture::class, mappedBy: 'property')]
+    #[ORM\OneToMany(targetEntity: Picture::class, mappedBy: 'property')]
     private Collection $picture;
 
     #[ORM\ManyToOne(inversedBy: 'properties')]
