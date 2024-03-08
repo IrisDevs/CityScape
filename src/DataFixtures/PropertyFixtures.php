@@ -19,7 +19,7 @@ class PropertyFixtures extends Fixture
     {  
         $faker = Factory::create('fr_FR');
 
-        for ($ii = 1; $ii < 25; $ii++) {
+        for ($ii = 1; $ii < 5; $ii++) {
 
         $property = new Property();
         $property->setPropHousingType($faker->randomElement(['Houses','Apartments','Office','Villa']));
@@ -37,7 +37,7 @@ class PropertyFixtures extends Fixture
            
             $url ='https://picsum.photos/1290/584';
             $imagename = rand(1,1000).'.jpg';
-            $img = 'C:\laragon\www\Symfony\CityScape\public\img\img'.$imagename;
+            $img = 'C:\Users\edasi\Documents\GitHub\CityScape\public\img\img'.$imagename;
             file_put_contents($img, file_get_contents($url));
 
             $pict = new Picture();

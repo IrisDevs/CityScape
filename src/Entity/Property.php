@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PropertyRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Property
 {
     use TimestampTraits;
@@ -48,7 +49,7 @@ class Property
     private Collection $picture;
 
     #[ORM\ManyToOne(inversedBy: 'properties')]
-    private ?category $category = null;
+    private ?Category $category = null;
 
     public function __construct()
     {
@@ -217,12 +218,12 @@ class Property
         return $this;
     }
 
-    public function getCategory(): ?category
+    public function getCategory(): ?Category
     {
         return $this->category;
     }
 
-    public function setCategory(?category $category): static
+    public function setCategory(?Category $category): static
     {
         $this->category = $category;
 

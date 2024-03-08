@@ -16,7 +16,7 @@ trait TimestampTraits
     }
 
     #[ORM\PrePersist]
-    public function setCreatedAt(\DateTimeInterface $createdAt): void
+    public function setCreatedAt(): void
     {
         $this->createdAt = new \DateTimeImmutable;
     }
@@ -26,7 +26,7 @@ trait TimestampTraits
     }
 
     #[ORM\PreUpdate]
-    public function setUpdatedAt(\DateTimeInterface $updatedAt): void
+    public function setUpdatedAt(): void
     {
         $this->updatedAt = new \DateTimeImmutable;
     }

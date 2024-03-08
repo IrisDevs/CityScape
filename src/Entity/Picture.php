@@ -11,6 +11,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: PictureRepository::class)]
 #[Vich\Uploadable]
+#[ORM\HasLifecycleCallbacks]
 class Picture
 {
     use TimestampTraits;
