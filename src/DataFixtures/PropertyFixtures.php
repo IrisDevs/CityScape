@@ -22,7 +22,7 @@ class PropertyFixtures extends Fixture
         for ($ii = 1; $ii < 5; $ii++) {
 
         $property = new Property();
-        $property->setPropHousingType($faker->randomElement(['Houses','Apartments','Office','Villa']));
+        $property->setPropHousingType($faker->randomElement(['House','Apartment','Office','Villa']));
         $property->setPropNbRooms($faker->numberBetween(0,30));
         $property->setPropSqm($faker->numberBetween(0,1000));
         $property->setPropPrice($faker->numberBetween(0,100000));

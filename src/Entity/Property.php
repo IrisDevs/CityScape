@@ -45,16 +45,17 @@ class Property
     #[ORM\OneToMany(targetEntity: Feature::class, mappedBy: 'feat_property')]
     private Collection $features;
 
-    #[ORM\OneToMany(targetEntity: Picture::class, mappedBy: 'property')]
-    private Collection $picture;
-
     #[ORM\ManyToOne(inversedBy: 'properties')]
     private ?Category $category = null;
+
+    #[ORM\OneToMany(targetEntity: Picture::class, mappedBy: 'property')]
+    private Collection $Picture;
 
     public function __construct()
     {
         $this->features = new ArrayCollection();
         $this->picture = new ArrayCollection();
+        $this->Picture = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -188,35 +189,6 @@ class Property
         return $this;
     }
 
-    /**
-     * @return Collection<int, picture>
-     */
-    public function getPicture(): Collection
-    {
-        return $this->picture;
-    }
-
-    public function addPicture(picture $picture): static
-    {
-        if (!$this->picture->contains($picture)) {
-            $this->picture->add($picture);
-            $picture->setProperty($this);
-        }
-
-        return $this;
-    }
-
-    public function removePicture(picture $picture): static
-    {
-        if ($this->picture->removeElement($picture)) {
-            // set the owning side to null (unless already changed)
-            if ($picture->getProperty() === $this) {
-                $picture->setProperty(null);
-            }
-        }
-
-        return $this;
-    }
 
     public function getCategory(): ?Category
     {
@@ -229,4 +201,39 @@ class Property
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Picture>
+     */
+    public function getPicture(): Collection
+    {
+        return $this->Picture;
+    }
+
+    public function addPicture(Picture $picture): static
+    {
+        if (!$this->Picture->contains($picture)) {
+            $this->Picture->add($picture);
+            $picture->setProperty($this);
+        }
+
+        return $this;
+    }
+
+    public function removePicture(Picture $picture): static
+    {
+        if ($this->Picture->removeElement($picture)) {
+            // set the owning side to null (unless already changed)
+            if ($picture->getProperty() === $this) {
+                $picture->setProperty(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString(): string
+ {
+    return  $this->$this->addPicture();
+ }
 }
