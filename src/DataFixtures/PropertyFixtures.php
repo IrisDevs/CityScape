@@ -33,11 +33,11 @@ class PropertyFixtures extends Fixture
         $property->setCategory($this->getReference('category_' . rand(1,2) ));
         $manager->persist($property);
 
-        for ($i = 0; $i <2; $i++) {
+        for ($i = 0; $i <3; $i++) {
            
             $url ='https://picsum.photos/1290/584';
             $imagename = rand(1,1000).'.jpg';
-            $img = 'C:\Users\edasi\Documents\GitHub\CityScape\public\img\img'.$imagename;
+            $img = 'C:\Users\edasi\Documents\GitHub\CityScape\public\img/'.$imagename;
             file_put_contents($img, file_get_contents($url));
 
             $pict = new Picture();
