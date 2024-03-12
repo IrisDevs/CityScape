@@ -54,7 +54,6 @@ class Property
     public function __construct()
     {
         $this->features = new ArrayCollection();
-        $this->picture = new ArrayCollection();
         $this->Picture = new ArrayCollection();
     }
 
