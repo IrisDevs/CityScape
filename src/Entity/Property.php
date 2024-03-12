@@ -231,9 +231,4 @@ class Property
 
         return $this;
     }
-
-    public function __toString(): string
- {
-    return  $this->$this->addPicture();
- }
 }

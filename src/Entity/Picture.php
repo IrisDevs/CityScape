@@ -2,15 +2,20 @@
 
 namespace App\Entity;
 
+use App\Entity\Property;
+use App\Entity\Traits\TimestampTraits;
 use App\Repository\PictureRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\DBAL\Types\Types;
 
 #[ORM\Entity(repositoryClass: PictureRepository::class)]
 #[Vich\Uploadable]
 #[ORM\HasLifecycleCallbacks]
 class Picture
 {
+    use TimestampTraits;
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -22,7 +27,13 @@ class Picture
     #[ORM\Column(nullable: true)]
     private ?int $imageSize = null;
 
-    #[ORM\ManyToOne(inversedBy: 'Picture')]
+    #[ORM\Column(type:'string', length:255)]
+    private ?string $attachment = null;
+
+    #[vich\UploadableField(mapping: 'products', fileNameProperty:'attachment')]
+    private ?File $attachmentFile = null;
+
+    #[ORM\ManyToOne(targetEntity:"App\Entity\Property", inversedBy: 'Picture')]
     private ?Property $property = null;
 
     public function getId(): ?int
@@ -69,5 +80,31 @@ class Picture
         $this->property = $property;
 
         return $this;
+    }
+
+    public function getAttachment(): ?string
+    {
+        return $this->attachment;
+    }
+
+    public function setAttachment(string $attachment): self
+    {
+        $this->attachment = $attachment;
+
+        return $this;
+    }
+
+    public function getAttachmentFile(): ?File
+    {
+        return $this->attachmentFile;
+    }
+
+    public function setAttachmentFile(?File $attachmentFile = null): void
+    {
+        $this->attachmentFile = $attachmentFile;
+
+        if (null !== $attachmentFile){
+            $this->updated_at = new \DateTimeImmutable();
+        }
     }
 }

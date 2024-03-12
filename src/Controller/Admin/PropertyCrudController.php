@@ -6,17 +6,12 @@ namespace App\Controller\Admin;
 use App\Entity\Property;
 use App\Form\PictureFormType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Filter\ChoiceFilter;
 use EasyCorp\Bundle\EasyAdminBundle\Filter\NumericFilter;
@@ -79,7 +74,7 @@ class PropertyCrudController extends AbstractCrudController
             CollectionField::new('Picture')
             ->setTemplatePath('bundles/EasyAdminBundle/page/picture.html.twig')
             ->setEntryIsComplex(true)
-            ->setEntryType(PictureFormType::class),
+            ->useEntryCrudForm(),
         ];
     }
  
