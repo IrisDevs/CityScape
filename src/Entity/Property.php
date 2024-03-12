@@ -48,7 +48,7 @@ class Property
     #[ORM\ManyToOne(inversedBy: 'properties')]
     private ?Category $category = null;
 
-    #[ORM\OneToMany(targetEntity: Picture::class, mappedBy: 'property')]
+    #[ORM\OneToMany(targetEntity: Picture::class, mappedBy: 'property', cascade:['persist','remove'])]
     private Collection $Picture;
 
     public function __construct()

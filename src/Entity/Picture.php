@@ -22,12 +22,9 @@ class Picture
     private ?int $id = null;
 
     #[ORM\Column(nullable: true)]
-    private ?string $imageName = null;
-
-    #[ORM\Column(nullable: true)]
     private ?int $imageSize = null;
 
-    #[ORM\Column(type:'string', length:255)]
+    #[ORM\Column(nullable: true)]
     private ?string $attachment = null;
 
     #[vich\UploadableField(mapping: 'products', fileNameProperty:'attachment')]
@@ -41,18 +38,6 @@ class Picture
         return $this->id;
     }
 
-    public function getImageName(): ?string
-    {
-        return $this->imageName;
-    }
-
-    public function setImageName(string $imageName): static
-    {
-        $this->imageName = $imageName;
-
-        return $this;
-    }
-
     public function getImageSize(): ?int
     {
         return $this->imageSize;
@@ -63,11 +48,6 @@ class Picture
         $this->imageSize = $imageSize;
 
         return $this;
-    }
-
-    public function __toString(): string
-    {
-       return  $this->getImageName();
     }
 
     public function getProperty(): ?Property
@@ -87,11 +67,9 @@ class Picture
         return $this->attachment;
     }
 
-    public function setAttachment(string $attachment): self
+    public function setAttachment(?string $attachment): void
     {
         $this->attachment = $attachment;
-
-        return $this;
     }
 
     public function getAttachmentFile(): ?File
@@ -104,7 +82,9 @@ class Picture
         $this->attachmentFile = $attachmentFile;
 
         if (null !== $attachmentFile){
-            $this->updated_at = new \DateTimeImmutable();
+            $this->updatedAt = new \DateTimeImmutable();
         }
     }
+
+    
 }

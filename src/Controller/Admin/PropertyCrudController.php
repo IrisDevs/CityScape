@@ -17,6 +17,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Filter\ChoiceFilter;
 use EasyCorp\Bundle\EasyAdminBundle\Filter\NumericFilter;
 use EasyCorp\Bundle\EasyAdminBundle\Filter\BooleanFilter;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class PropertyCrudController extends AbstractCrudController
 {
