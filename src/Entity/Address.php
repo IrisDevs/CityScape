@@ -31,13 +31,11 @@ class Address
     #[ORM\Column(length: 255)]
     private ?string $add_zip = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?property $add_property = null;
+    #[ORM\Column(length: 255)]
+    private ?string $addCountry = null;
 
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?country $add_country = null;
+    #[ORM\OneToOne(inversedBy: 'address', cascade: ['persist', 'remove'])]
+    private ?Property $addProperty = null;
 
     public function getId(): ?int
     {
@@ -116,26 +114,26 @@ class Address
         return $this;
     }
 
-    public function getAddProperty(): ?property
+    public function getAddCountry(): ?string
     {
-        return $this->add_property;
+        return $this->addCountry;
     }
 
-    public function setAddProperty(property $add_property): static
+    public function setAddCountry(string $addCountry): static
     {
-        $this->add_property = $add_property;
+        $this->addCountry = $addCountry;
 
         return $this;
     }
 
-    public function getAddCountry(): ?country
+    public function getAddProperty(): ?Property
     {
-        return $this->add_country;
+        return $this->addProperty;
     }
 
-    public function setAddCountry(?country $add_country): static
+    public function setAddProperty(?Property $addProperty): static
     {
-        $this->add_country = $add_country;
+        $this->addProperty = $addProperty;
 
         return $this;
     }

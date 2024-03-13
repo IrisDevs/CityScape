@@ -4,8 +4,12 @@ namespace App\Controller\Admin;
 
 
 use App\Entity\Property;
+use App\Form\AddressFormType;
 use App\Form\PictureFormType;
+use Symfony\Component\Form\Extension\Core\Type\EntryType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
@@ -64,18 +68,19 @@ class PropertyCrudController extends AbstractCrudController
     public function configureFields(string $property): iterable
     {
         return [
-            TextField::new('prop_housing_type'),
-            IntegerField::new('prop_nb_rooms'),
-            IntegerField::new('prop_sqm'),
-            IntegerField::new('prop_price'),
-            IntegerField::new('prop_nb_beds'),
-            IntegerField::new('prop_nb_baths'),
-            IntegerField::new('prop_nb_spaces'),
-            BooleanField::new('prop_furnished'),            
-            CollectionField::new('Picture')
+            TextField::new('prop_housing_type', 'Type du bien immobilier'),
+            IntegerField::new('prop_nb_rooms', 'Nombre de chambre'),
+            IntegerField::new('prop_sqm', 'Superficie (m²)'),
+            IntegerField::new('prop_price', 'Prix'),
+            IntegerField::new('prop_nb_beds' ,'Nombre de lit'),
+            IntegerField::new('prop_nb_baths', 'Nombre de salle de bain'),
+            IntegerField::new('prop_nb_spaces', 'Nombre de places'),
+            BooleanField::new('prop_furnished', 'Fourniture inclus'),            
+            CollectionField::new('Picture', 'Photos')
             ->setTemplatePath('bundles/EasyAdminBundle/page/picture.html.twig')
             ->setEntryIsComplex(true)
             ->useEntryCrudForm(),
+            ArrayField::new('propFeature', 'Fonctionnalité'),
         ];
     }
  

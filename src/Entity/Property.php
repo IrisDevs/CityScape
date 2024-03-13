@@ -6,6 +6,7 @@ use App\Entity\Traits\TimestampTraits;
 use App\Repository\PropertyRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PropertyRepository::class)]
@@ -42,14 +43,20 @@ class Property
     #[ORM\Column(nullable: true)]
     private ?bool $prop_furnished = null;
 
-    #[ORM\OneToMany(targetEntity: Feature::class, mappedBy: 'feat_property')]
-    private Collection $features;
-
     #[ORM\ManyToOne(inversedBy: 'properties')]
     private ?Category $category = null;
 
     #[ORM\OneToMany(targetEntity: Picture::class, mappedBy: 'property', cascade:['persist','remove'])]
     private Collection $Picture;
+
+    #[ORM\Column(type: Types::ARRAY, nullable: true)]
+    private ?array $propFeature = null;
+
+    #[ORM\OneToOne(mappedBy: 'addProperty', cascade: ['persist', 'remove'])]
+    private ?Address $address = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $propAddress = null;
 
     public function __construct()
     {
@@ -158,36 +165,6 @@ class Property
         return $this;
     }
 
-    /**
-     * @return Collection<int, Feature>
-     */
-    public function getFeatures(): Collection
-    {
-        return $this->features;
-    }
-
-    public function addFeature(Feature $feature): static
-    {
-        if (!$this->features->contains($feature)) {
-            $this->features->add($feature);
-            $feature->setFeatProperty($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFeature(Feature $feature): static
-    {
-        if ($this->features->removeElement($feature)) {
-            // set the owning side to null (unless already changed)
-            if ($feature->getFeatProperty() === $this) {
-                $feature->setFeatProperty(null);
-            }
-        }
-
-        return $this;
-    }
-
 
     public function getCategory(): ?Category
     {
@@ -227,6 +204,52 @@ class Property
                 $picture->setProperty(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPropFeature(): ?array
+    {
+        return $this->propFeature;
+    }
+
+    public function setPropFeature(?array $propFeature): static
+    {
+        $this->propFeature = $propFeature;
+
+        return $this;
+    }
+
+    public function getAddress(): ?Address
+    {
+        return $this->address;
+    }
+
+    public function setAddress(?Address $address): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($address === null && $this->address !== null) {
+            $this->address->setAddProperty(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($address !== null && $address->getAddProperty() !== $this) {
+            $address->setAddProperty($this);
+        }
+
+        $this->address = $address;
+
+        return $this;
+    }
+
+    public function getPropAddress(): ?string
+    {
+        return $this->propAddress;
+    }
+
+    public function setPropAddress(string $propAddress): static
+    {
+        $this->propAddress = $propAddress;
 
         return $this;
     }

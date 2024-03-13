@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Property;
 use App\Entity\Category;
 use App\Entity\Project;
+use App\Entity\Address;
 use App\Entity\Picture;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -50,6 +51,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Catégorie', 'fas fa-list', Category::class);
         yield MenuItem::linkToCrud('Propriétés', 'fas fa-list', Property::class);
         yield MenuItem::linkToCrud('Projet', 'fas fa-list', Project::class);
+        yield MenuItem::linkToCrud('Address', 'fas fa-list', Address::class);
         // yield MenuItem::linkToCrud('Picture', 'fas fa-list', Picture::class);
     }
 }
