@@ -6,6 +6,7 @@ use App\Entity\Picture;
 use App\Entity\Property;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Common\Collections\ArrayCollection;
 
 // Pour utiliser faker
 use Faker\Factory;
@@ -30,22 +31,24 @@ class PropertyFixtures extends Fixture
         $property->setPropNbBaths($faker->numberBetween(0,10));
         $property->setPropNbSpaces($faker->numberBetween(0,10));
         $property->setPropFurnished($faker->numberBetween(0,1));
-        $property->setCategory($this->getReference('category_' . rand(1,2) ));
+        $property->setPropFeature($faker->randomElements(['Test','Coucou']));
+        // $property->setAddress($faker->address());
         $manager->persist($property);
+        
 
-        for ($i = 0; $i <3; $i++) {
+        // for ($i = 0; $i <3; $i++) {
            
-            $url ='https://picsum.photos/1290/584';
-            $imagename = rand(1,1000).'.jpg';
-            $img = 'C:\Users\edasi\Documents\GitHub\CityScape\public\img/'.$imagename;
-            file_put_contents($img, file_get_contents($url));
+        //     $url ='https://picsum.photos/1290/584';
+        //     $imagename = rand(1,1000).'.jpg';
+        //     $img = 'C:\Users\edasi\Documents\GitHub\CityScape\public\img/'.$imagename;
+        //     file_put_contents($img, file_get_contents($url));
 
-            $pict = new Picture();
-            $pict->setImageName($imagename);
-            $pict->setProperty( $property);
+        //     $pict = new Picture();
+        //     $pict->setImageName($imagename);
+        //     $pict->setProperty( $property);
 
-            $manager->persist($pict);
-        };
+        //     $manager->persist($pict);
+        // };
      
         
     }

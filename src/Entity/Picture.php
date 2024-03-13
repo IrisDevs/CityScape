@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Entity;
 
 use App\Entity\Property;
@@ -30,7 +29,7 @@ class Picture
     #[vich\UploadableField(mapping: 'products', fileNameProperty:'attachment')]
     private ?File $attachmentFile = null;
 
-    #[ORM\ManyToOne(targetEntity:"App\Entity\Property", inversedBy: 'Picture')]
+    #[ORM\ManyToOne(inversedBy: 'Picture')]
     private ?Property $property = null;
 
     public function getId(): ?int
@@ -50,12 +49,12 @@ class Picture
         return $this;
     }
 
-    public function getProperty(): ?Property
+    public function getPicProperty(): ?Property
     {
         return $this->property;
     }
 
-    public function setProperty(?Property $property): static
+    public function setPicProperty(?Property $property): static
     {
         $this->property = $property;
 

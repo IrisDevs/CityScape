@@ -18,13 +18,13 @@ class AddressCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('add_nb_street'),
-            TextField::new('add_address_line_1'),
-            TextField::new('add_address_line_2'),
-            TextField::new('add_city'),
-            TextField::new('add_state'),
-            TextField::new('add_zip'),
-            CountryField::new('add_country'),
+            TextField::new('add_nb_street', 'Numéro de la rue'),
+            TextField::new('add_address_line_1', 'Adresse'),
+            TextField::new('add_address_line_2', 'Complément D"adresse'),
+            TextField::new('add_city', 'Ville'),
+            TextField::new('add_state', 'Région/Etat'),
+            TextField::new('add_zip', 'Zip/Code postal'),
+            CountryField::new('add_country', 'Pays'),
         ];
     }
 

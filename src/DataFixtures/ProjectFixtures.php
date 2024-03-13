@@ -16,7 +16,7 @@ class ProjectFixtures extends Fixture
             $project = new Project();
             $project-> setProjClient($faker->lastName());
             $project-> setProjPrice($faker->numberBetween(0, 100000));
-            $project-> setProjCategory($faker->word());
+            $project-> setProjCategory($faker->randomElements(['Real Estate','Planning']));
             $project-> setProjDate(new \DateTime());
             $project-> setProjFacebook($faker->domainName());
             $project-> setProjTwitter($faker->domainName());
