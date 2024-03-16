@@ -23,7 +23,7 @@ class UserFixtures extends Fixture
             $user-> setLastName($faker->lastName());
             $user-> setUserName($faker->userName());
             $user-> setFirstName($faker->firstName());
-            $user-> setRoles($faker->randomElements(['admin', 'client']));
+            $user-> setRoles($faker->randomElements(['ROLE_ADMIN', 'ROLE_USER']));
             $user-> setIsVerified($faker->numberBetween(0, 1));
             $manager->persist($user);
             }
