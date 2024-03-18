@@ -34,6 +34,8 @@ class PropertyFixtures extends Fixture
         $property->setSlug($faker->slug());
         $property->setTitle($faker->title());
         $property->setPropFeature($faker->randomElements(['Test','Coucou']));
+        $property->setLatitude($faker->latitude());
+        $property->setLongitude($faker->longitude());
         // $property->setAddress($faker->address());
         $manager->persist($property);
         

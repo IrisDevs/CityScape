@@ -19,9 +19,9 @@ class Property
 	use TimestampTraits;
 	
 	#[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+                      #[ORM\GeneratedValue]
+                      #[ORM\Column]
+                      private ?int $id = null;
 
     #[ORM\Column(length: 255)]
     private ?string $propHousingType = null;
@@ -70,6 +70,12 @@ class Property
 
     #[ORM\Column(length: 255)]
     private ?string $title = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $latitude = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $longitude = null;
 
     public function __construct()
     {
@@ -309,4 +315,31 @@ class Property
 
         return $this;
     }
+
+    public function getLatitude(): ?string
+    {
+        return $this->latitude;
+    }
+
+    public function setLatitude(?string $latitude): static
+    {
+        $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    public function getLongitude(): ?string
+    {
+        return $this->longitude;
+    }
+
+    public function setLongitude(?string $longitude): static
+    {
+        $this->longitude = $longitude;
+
+        return $this;
+    }
+    
 }
+
+    

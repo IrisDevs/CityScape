@@ -30,6 +30,23 @@ class PropertyRepository extends ServiceEntityRepository
         ;
         
     }
+
+    public function FindPropertyByMenu($subMenu, $id): array
+    {
+        return $this->createQueryBuilder('p')
+            ->join('p.Category', 'm')
+            ->andWhere('m.slug = :val')
+            ->setParameter('val', $subMenu)
+            ->andWhere('m.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult()
+
+        ;
+    }
+}
+
+    
     //    /**
     //     * @return Property[] Returns an array of Property objects
     //     */
@@ -45,13 +62,4 @@ class PropertyRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?Property
-    //    {
-    //        return $this->createQueryBuilder('p')
-    //            ->andWhere('p.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
-}
+

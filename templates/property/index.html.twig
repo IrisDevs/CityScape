@@ -130,14 +130,14 @@
 								<h6 class="property-item__price">
 									{{ property.propPrice|format_currency('EUR') }}
 
-									<span class="day">/per day</span>
+									<span class="day">frais d'agence inclus</span>
 									
 								</h6>
 								<p class="property-item__location d-flex gap-2">
 									<span class="icon text-gradient">
 										<i class="fas fa-map-marker-alt"></i>
 									</span>
-									66 Broklyant, New York America
+									{{ property.propHousingType }}
 								</p>
 								<a href="{{ path('app_propertydetail', {'slug': property.slug}) }}" class="simple-btn text-gradient fw-semibold font-14">Book Now
 									<span class="icon-right">
