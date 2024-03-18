@@ -145,22 +145,22 @@ class Category
         return $this->properties;
     }
 
-    public function addProperty(Property $property): static
+    public function addProperties(Property $property): static
     {
         if (!$this->properties->contains($property)) {
             $this->properties->add($property);
-            $property->setCategory($this);
+            $property->setPropCategory($this);
         }
 
         return $this;
     }
 
-    public function removeProperty(Property $property): static
+    public function removeProperties(Property $property): static
     {
         if ($this->properties->removeElement($property)) {
             // set the owning side to null (unless already changed)
-            if ($property->getCategory() === $this) {
-                $property->setCategory(null);
+            if ($property->getPropCategory() === $this) {
+                $property->setPropCategory(null);
             }
         }
 

@@ -19,30 +19,30 @@ class CategoryFixtures extends Fixture
             [
                 'main_categories' => 'Page',
                 'sub_category_array' => [
-                    'Property',
-                    'Property Sidebar',
-                    'Property Details',
-                    'Add New Listing',
-                    'About Us',
-                    'FAQ',
-                    'CheckOut',
-                    'Cart'
+                    'property',
+                    'propertysidebar',
+                    'propertydetail',
+                    'addlisting',
+                    'about',
+                    'faq',
+                    'checkout',
+                    'cart'
                 ]
             ],
         
             [
                 'main_categories' => 'Projects',
                 'sub_category_array' => [
-                    'Project',
-                    'Project Details'
+                    'project',
+                    'projectdetail'
                 ]
             ],
         
             [
                 'main_categories' => 'Blog',
                 'sub_category_array' => [
-                    'Blog Classic',
-                    'Blog Details'
+                    'blogclassic',
+                    'blogdetail'
                 ]
             ],
         

@@ -179,9 +179,9 @@
 							<h6 class="common-sidebar__title">
 								Category
 							</h6>
-                            {{dump(property.propCategory)}}
+                            
 							<ul class="category-list">
-                                {% for category in property.propCategory %}    
+                                {% for category in property.propCategory.categories %}    
 								<li class="category-list__item">
 									<a href="{{ path('app_propertydetail', {'slug': category.slug}) }}" class="category-list__link flx-between">
 										<span class="text">{{ category.name }}</span>

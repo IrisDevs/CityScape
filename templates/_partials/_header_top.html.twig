@@ -44,7 +44,7 @@
         <ul class="nav-submenu">
         {% for sb in menu.categories %}
             <li class="nav-submenu__item">
-                <a href={{ path('app_propertydetail', {'slug': sb.slug })}} class="nav-submenu__link"> {{ sb.name }} </a>
+                <a href={{ path('app_' ~ sb.name, {'slug': sb.slug })}} class="nav-submenu__link"> {{ sb.name }} </a>
             </li>
             {% endfor %}
             
