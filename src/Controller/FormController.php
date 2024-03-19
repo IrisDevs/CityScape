@@ -10,9 +10,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class ContactController extends AbstractController
+class FormController extends AbstractController
 {
-    #[Route('/contact', name: 'app_contact')]
+    #[Route('/form', name: 'app_form')]
     public function new(Request $request, EntityManagerInterface $em): Response
     {
         $contact = new Form();
@@ -28,15 +28,13 @@ class ContactController extends AbstractController
             // $contact = $form->getData();
             // $formName = $form->get('formName')->getData();
 
-
+            // ... perform some action, such as saving the task to the database
 
             return new Response('Votre form a bien été prit en compte!');
         }
 
-        return $this->renderForm('contact/index.html.twig', [
+        return $this->renderForm('form/index.html.twig', [
             'form' => $form,
-            'controller_name' => 'ContactController',
-            'breadcrumb_title' => 'Contact',
         ]);
       
     }
