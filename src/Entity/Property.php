@@ -19,9 +19,9 @@ class Property
 	use TimestampTraits;
 	
 	#[ORM\Id]
-                      #[ORM\GeneratedValue]
-                      #[ORM\Column]
-                      private ?int $id = null;
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
 
     #[ORM\Column(length: 255)]
     private ?string $propHousingType = null;
