@@ -20,7 +20,7 @@ class PropertyController extends AbstractController
          $pagination = $paginator->paginate(
             $properties, 
             $request->query->getInt('page', 1), 
-            10 
+            6
         );
         return $this->render('property/index.html.twig', [
             'properties' => $pagination,
