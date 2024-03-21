@@ -2,93 +2,100 @@
 
 namespace App\Entity;
 
-use App\Repository\FormRepository;
-use Doctrine\ORM\Mapping as ORM;
-
-#[ORM\Entity(repositoryClass: FormRepository::class)]
 class Form
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    private $name;
+    private $email;
+    private $number;
+    private $subject;
+    private $message;
 
-    #[ORM\Column(length: 255)]
-    private ?string $formName = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $formEmail = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $formPhone = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $formSubject = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $formMessage = null;
-
-    public function getId(): ?int
+    /**
+     * Get the value of name
+     */
+    public function getName()
     {
-        return $this->id;
+        return $this->name;
     }
 
-    public function getFormName(): ?string
+    /**
+     * Set the value of name
+     */
+    public function setName($name): self
     {
-        return $this->formName;
-    }
-
-    public function setFormName(string $formName): static
-    {
-        $this->formName = $formName;
+        $this->name = $name;
 
         return $this;
     }
 
-    public function getFormEmail(): ?string
+    /**
+     * Get the value of email
+     */
+    public function getEmail()
     {
-        return $this->formEmail;
+        return $this->email;
     }
 
-    public function setFormEmail(string $formEmail): static
+    /**
+     * Set the value of email
+     */
+    public function setEmail($email): self
     {
-        $this->formEmail = $formEmail;
+        $this->email = $email;
 
         return $this;
     }
 
-    public function getFormPhone(): ?string
+    /**
+     * Get the value of number
+     */
+    public function getNumber()
     {
-        return $this->formPhone;
+        return $this->number;
     }
 
-    public function setFormPhone(string $formPhone): static
+    /**
+     * Set the value of number
+     */
+    public function setNumber($number): self
     {
-        $this->formPhone = $formPhone;
+        $this->number = $number;
 
         return $this;
     }
 
-    public function getFormSubject(): ?string
+    /**
+     * Get the value of subject
+     */
+    public function getSubject()
     {
-        return $this->formSubject;
+        return $this->subject;
     }
 
-    public function setFormSubject(string $formSubject): static
+    /**
+     * Set the value of subject
+     */
+    public function setSubject($subject): self
     {
-        $this->formSubject = $formSubject;
+        $this->subject = $subject;
 
         return $this;
     }
 
-    public function getFormMessage(): ?string
+    /**
+     * Get the value of message
+     */
+    public function getMessage()
     {
-        return $this->formMessage;
+        return $this->message;
     }
 
-    public function setFormMessage(string $formMessage): static
+    /**
+     * Set the value of message
+     */
+    public function setMessage($message): self
     {
-        $this->formMessage = $formMessage;
+        $this->message = $message;
 
         return $this;
     }

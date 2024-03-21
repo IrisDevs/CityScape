@@ -140,11 +140,13 @@
 									</span>
 									{{ property.propHousingType }}
 								</p>
-								<a href="{{ path('app_propertydetail', {'slug': property.slug}) }}" class="simple-btn text-gradient fw-semibold font-14">Book Now
+								{% if property.propCategory.name == 'Projects' %}
+								<a href="{{ path('app_contact', {'id': property.id }) }}" class="simple-btn text-gradient fw-semibold font-14">Book Now
 									<span class="icon-right">
 										<i class="fas fa-arrow-right"></i>
 									</span>
 								</a>
+								{% endif %}
 							</div>
 						
 						</div>

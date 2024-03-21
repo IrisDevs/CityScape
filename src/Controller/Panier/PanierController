@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Controller\Panier;
+
+
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+class PanierController extends AbstractController
+{
+        public function __construct(
+            private SessionInterface $session){}
+        
+
+    #[Route('api/ajout/panier/{id}', name: 'panier')]
+    public function index(int $id, SessionInterface $session)
+    {
+        $cat = $this->session->get('panier', []);
+
+        $session->set('panier', $cat);
+
+        if (!empty($a[$id])) {
+            $cat[$id]++;
+        } else {
+            $cat[$id]=1;
+        }
+
+       
+
+    }
+}
