@@ -50,6 +50,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     #[ORM\Column(length: 255)]
     private ?string $userName = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $DiscordId = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -195,6 +198,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     public function setEmailAuthCode(string $authCode): void
     {
         $this->authCode = $authCode;
+    }
+
+    /**
+     * Get the value of DiscordId
+     */ 
+    public function getDiscordId()
+    {
+        return $this->DiscordId;
+    }
+
+    /**
+     * Set the value of DiscordId
+     *
+     * @return  self
+     */ 
+    public function setDiscordId($DiscordId)
+    {
+        $this->DiscordId = $DiscordId;
+
+        return $this;
     }
 }
 

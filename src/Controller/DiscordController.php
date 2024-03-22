@@ -8,29 +8,29 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class LinkedinController extends AbstractController
+class DiscordController extends AbstractController
 {
     /**
-     * @Route("/connect/linkedin", name="connect_linkedin_start")
+     * @Route("/connect/discord", name="connect_discord_start")
      */
 
-     #[Route(path: '/connect/linkedin', name: 'connect_linkedin_start')]
+     #[Route(path: '/connect/discord', name: 'connect_discord_start')]
     public function connectAction(ClientRegistry $clientRegistry)
     {
         return $clientRegistry
-            ->getClient('linkedin_main') // key used in config/packages/knpu_oauth2_client.yaml
-            ->redirect(['openid', 'email', 'profile'], []);
+            ->getClient('discord_main') // key used in config/packages/knpu_oauth2_client.yaml
+            ->redirect(['identify'], []);
     }
 
     /**
-     * After going to linkedin, you're redirected back here
+     * After going to discord, you're redirected back here
      * because this is the "redirect_route" you configured
      * in config/packages/knpu_oauth2_client.yaml
      *
-     * @Route("/connect/linkedin/check", name="connect_linkedin_check")
+     * @Route("/connect/discord/check", name="connect_discord_check")
      */
 
-     #[Route(path: '/connect/linkedin/check', name: 'connect_linkedin_check')]
+     #[Route(path: '/connect/discord/check', name: 'connect_discord_check')]
     public function connectCheckAction(Request $request, ClientRegistry $clientRegistry)
     {
         

@@ -32,7 +32,7 @@ security:
                 path: /
                 always_remember_me: true
             custom_authenticators:
-               - App\Security\MyLinkedinAuthenticator
+               - App\Security\MyDiscordAuthenticator
                     
 
             # activate different ways to authenticate
