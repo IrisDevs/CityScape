@@ -14,12 +14,16 @@ use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class RegistrationFormType extends AbstractType
+
 {
+
+
+    
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('email', EmailType::class, ['attr'=> ['placeholder'=>'Entrez votre adresse email'], 'label' => false])
-            ->add('userName',)
+            ->add('userName')
             ->add('lastName')
             ->add('firstName')
             ->add('agreeTerms', CheckboxType::class, [
