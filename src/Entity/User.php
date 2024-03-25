@@ -41,17 +41,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $lastName = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $firstName = null;
 
     #[ORM\Column(length: 255)]
     private ?string $userName = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $DiscordId = null;
+    private ?string $discordId = null;
 
     public function getId(): ?int
     {
@@ -205,7 +205,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
      */ 
     public function getDiscordId()
     {
-        return $this->DiscordId;
+        return $this->discordId;
     }
 
     /**
@@ -213,9 +213,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
      *
      * @return  self
      */ 
-    public function setDiscordId($DiscordId)
+    public function setDiscordId($discordId)
     {
-        $this->DiscordId = $DiscordId;
+        $this->discordId = $discordId;
 
         return $this;
     }

@@ -19,7 +19,7 @@ class DiscordController extends AbstractController
     {
         return $clientRegistry
             ->getClient('discord_main') // key used in config/packages/knpu_oauth2_client.yaml
-            ->redirect(['identify'], []);
+            ->redirect(['identify', 'email'], []);
     }
 
     /**

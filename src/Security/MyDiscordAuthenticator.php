@@ -18,6 +18,7 @@ use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPasspor
 use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface;
 use Wohali\OAuth2\Client\Provider\DiscordResourceOwner;
 
+
 final class MyDiscordAuthenticator extends OAuth2Authenticator implements AuthenticationEntryPointInterface
 {
     public function __construct(
@@ -52,6 +53,11 @@ final class MyDiscordAuthenticator extends OAuth2Authenticator implements Authen
                 if (null === $user) {
                     $user = new User();
                     $user->setDiscordId($discordUser->getId());
+                    $user->setEmail($discordUser->getEmail());
+                    $user->setPassword($accessToken->getToken());
+                    $user->setUserName($discordUser->getUserName());
+
+
 
                     $this->em->persist($user);
                 }
@@ -65,11 +71,13 @@ final class MyDiscordAuthenticator extends OAuth2Authenticator implements Authen
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        // redirect to user to your post authentication page (e.g. dashboard, home)
+        return new RedirectResponse(
+            $this->router->generate('app_home')
+        );
     }
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
-        // do something
+        return new Response('Echec de connexion');
     }
 }
