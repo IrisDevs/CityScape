@@ -4,7 +4,25 @@
 
 {% block body %}
 
-{% include '_partials/_breadcrumb.html.twig' %}
+ <!-- ==================== Breadcrumb Start Here ==================== -->
+<section class="breadcrumb padding-y-120">
+    <img src="assets/images/thumbs/breadcrumb-img.png" alt="" class="breadcrumb__img">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="breadcrumb__wrapper">
+                    <h2 class="breadcrumb__title"> </h2>
+                    <ul class="breadcrumb__list">
+                        <li class="breadcrumb__item"><a href="index.html" class="breadcrumb__link"> <i class="las la-home"></i> Cart  </a> </li>
+                        <li class="breadcrumb__item"><i class="fas fa-angle-right"></i></li>
+                        <li class="breadcrumb__item"> <span class="breadcrumb__item-text"> Cart </span> </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ==================== Breadcrumb End Here ==================== -->
     
     <!-- =========================== Cart Section Start ===================== -->
 <section class="cart padding-y-120">
@@ -33,9 +51,9 @@
                                                 <img src="assets/images/thumbs/property-1.png" alt="">
                                             </div>
                                             <div class="cart-item__content">
-                                                <h6 class="cart-item__title fw-500 font-18"> <a href="property.html" class="link">{{ item.product.propertyTitle }}</a></h6>
+                                                <h6 class="cart-item__title fw-500 font-18"> <a href="property.html" class="link">{{ item.product.Title }}</a></h6>
 
-                                                <span class="cart-item__price">Price: <span class="fw-500 text-heading">{{ item.product.price }}</span></span>
+                                                <span class="cart-item__price">Price: <span class="fw-500 text-heading">{{ item.product.propPrice }}</span></span>
                                             </div>
                                         </div>
                                     </td>
@@ -47,7 +65,7 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <h6 class="cart-item__totalPrice font-16 fw-500 mb-0">{{ item.product.price * item.quantity}}</h6>
+                                        <h6 class="cart-item__totalPrice font-16 fw-500 mb-0">{{ item.product.propPrice * item.quantity}}</h6>
                                     </td>
                                     <td>
                                         <a href="{{ path('app_delete_cart', {'id': item.product.id}) }}" class="rounded-btn delete-btn  text-danger bg-danger bg-opacity-10 flex-shrink-0">

@@ -62,7 +62,7 @@
                 <a href="{{ path('app_checkout') }}" class="nav-submenu__link"> Checkout</a>
             </li>
             <li class="nav-submenu__item">
-                <a href="{{ path('app_cart') }}" class="nav-submenu__link"> Cart</a>
+                <a href={{ path('app_cart', {'id': 'sb.id' }) }} class="nav-submenu__link"> Cart</a>
             </li>
             <li class="nav-submenu__item">
                 <a href="login.html" class="nav-submenu__link"> Login</a>

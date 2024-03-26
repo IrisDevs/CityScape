@@ -13,7 +13,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class CartController extends AbstractController
 {
-    #[Route('/cart', name: 'app_cart')]
+    #[Route('/cart/add/location/{id}', name: 'app_cart')]
     #[IsGranted('ROLE_USER')]
     public function add(SessionInterface $session, $id)
     {
@@ -48,7 +48,7 @@ class CartController extends AbstractController
         $total = 0;
 
         foreach ($panierWithData as $item) {
-            $totalItem = $item['product']->getPrice() * $item['quantity'];
+            $totalItem = $item['product']->getPropPrice() * $item['quantity'];
             $total += $totalItem;
         }
 
@@ -102,6 +102,7 @@ class CartController extends AbstractController
             'mode' => 'payment',
             'success_url' => 'https://127.0.0.1:8000/success?session_id={CHECKOUT_SESSION_ID}',
             'cancel_url' => $this->generateUrl('user_panier_show', [], UrlGeneratorInterface::ABSOLUTE_URL),
+            'breadcrumb_title' => 'Cart',
         ]);
 
         return $this->redirect($session_paiement->url, 303);
