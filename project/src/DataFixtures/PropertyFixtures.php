@@ -42,10 +42,10 @@ class PropertyFixtures extends Fixture
         
 
         for ($i = 0; $i <1; $i++) {
-            $url = 'https://loremflickr.com/905/584/house';
-                $imagename = rand(1, 1000) . '.jpg';
-                $img = 'C:\laragon\www\Symfony\CityScape\public\img/' . $imagename;
-                file_put_contents($img, file_get_contents($url));
+            // $url = 'https://loremflickr.com/905/584/house';
+                $imagename = rand(1, 100) . '.jpg';
+                // $img = 'C:\laragon\www\Symfony\CityScape\project\public\img/' . $imagename;
+                // file_put_contents($img, file_get_contents($url));
 
                 $pict = new Picture();
                 $pict->setAttachment($imagename);
