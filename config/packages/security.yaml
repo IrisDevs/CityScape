@@ -17,9 +17,6 @@ security:
         main:
             lazy: true
             provider: app_user_provider
-            custom_authenticator: 
-                - App\Security\UserAuthenticator
-                - App\Security\MyDiscordAuthenticator
             logout:
                 path: app_logout
                 # where to redirect after logout
@@ -35,6 +32,8 @@ security:
                 always_remember_me: true
             custom_authenticators:
                - App\Security\MyDiscordAuthenticator
+               - App\Security\UserAuthenticator
+            entry_point: 'App\Security\UserAuthenticator'
                     
 
             # activate different ways to authenticate
